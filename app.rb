@@ -1,12 +1,16 @@
-rvmrc = <<-RVMRC
-rvm_gemset_create_on_use_flag=1
-rvm gemset use #{app_name}
-RVMRC
+# reference for Rails3 template syntax: railties/lib/rails/generators/actions.rb
 
-create_file ".rvmrc", rvmrc
+if yes?("create rvm gemset?")
+  rvmrc = <<-RVMRC
+  rvm_gemset_create_on_use_flag=1
+  rvm gemset use #{app_name}
+  RVMRC
+  
+  create_file ".rvmrc", rvmrc
+end
 
 empty_directory "lib/generators"
-git :clone => "--depth 0 http://github.com/leshill/rails3-app.git lib/generators"
+git :clone => "--depth 0 http://github.com/Florent2/rails3-template.git lib/generators"
 remove_dir "lib/generators/.git"
 
 gem "haml", ">= 3.0.0.rc.4"
