@@ -15,14 +15,12 @@ remove_dir "lib/generators/.git"
 
 gem "haml", ">= 3.0.0.rc.4"
 gem "rspec-rails", ">= 2.0.0.beta.8", :group => :test
-gem "factory_girl", ">= 1.2.4", :group => :test
 
 generators = <<-GENERATORS
 
     config.generators do |g|
       g.template_engine :haml
-      g.test_framework :rspec, :fixture => true, :views => false
-      g.fixture_replacement :factory_girl, :dir => "spec/factories"
+      g.test_framework :rspec, :fixture => false, :views => false
     end
 GENERATORS
 
