@@ -1,4 +1,5 @@
-# reference for Rails3 template syntax: railties/lib/rails/generators/actions.rb
+# reference for Rails3 template syntax: 
+#  http://github.com/rails/rails/blob/master/railties/lib/rails/generators/actions.rb
 
 if yes?("create rvm gemset?")
   rvmrc = <<-RVMRC
@@ -51,9 +52,6 @@ LAYOUT
 
 remove_file "app/views/layouts/application.html.erb"
 create_file "app/views/layouts/application.html.haml", layout
-
-create_file "log/.gitkeep"
-create_file "tmp/.gitkeep"
 
 git :init
 git :add => "."
