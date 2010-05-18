@@ -1,5 +1,6 @@
-# reference for Rails3 template syntax: 
+# references for Rails3 template syntax: 
 #  http://github.com/rails/rails/blob/master/railties/lib/rails/generators/actions.rb
+#  http://rdoc.info/rdoc/wycats/thor/blob/f939a3e8a854616784cac1dcff04ef4f3ee5f7ff/Thor/Actions.html
 
 if yes?("create rvm gemset?")
   rvmrc = <<-RVMRC
