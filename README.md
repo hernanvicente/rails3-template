@@ -4,8 +4,7 @@ Rails 3, RSpec, Haml, and jQuery
 Easily generate a Rails 3 application with RSpec, Haml, and
 jQuery in one line:
 
-    % rails my_app -J -T -m \
-    http://github.com/leshill/rails3-app/raw/master/app.rb
+    % rails my_app -J -T -m http://github.com/Florent2/rails3-template/raw/master/app.rb
 
 rvm
 ---
