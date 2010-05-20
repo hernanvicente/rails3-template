@@ -54,19 +54,12 @@ LAYOUT
 remove_file "app/views/layouts/application.html.erb"
 create_file "app/views/layouts/application.html.haml", layout
 
+run "gem install bundler"
+run "bundle install"
+generate "rspec:install" 
+
 git :init
 git :add => "."
+git :commit => "-a -m 'initial commit'"
 
-docs = <<-DOCS
 
-Run the following commands to complete the setup of #{app_name.humanize}:
-
-% cd #{app_name}
-% gem install bundler
-% bundle install
-% bundle lock
-% script/rails generate rspec:install
-
-DOCS
-
-log docs
