@@ -17,7 +17,7 @@ git :clone => "--depth 0 http://github.com/Florent2/rails3-template.git lib/gene
 remove_dir "lib/generators/.git"
 
 run "cp config/database.yml config/database.yml.example"
-append_file '.gitignore', 'config/database.yml'
+append_file '.gitignore', ["config/database.yml", "spec/views", "spec/controllers", "spec/requests"].join("\n")
 
 gem "haml", ">= 3.0.0.rc.4"
 
