@@ -33,19 +33,7 @@ so:
 git
 ---
 
-We love `git`, so the application has a git repo initialized with all the initial changes staged.
-
-Wrap Up
--------
-
-After the application has been generated, there are a few clean up commands to run:
-
-    % cd my_app
-    % gem install bundler
-    % bundle install
-    % bundle lock
-    % script/rails generate rspec:install
-
+We love `git`, so the application has a git repo initialized with all the initial changes commmitted.
 
 Note on Patches/Pull Requests
 -----------------------------
