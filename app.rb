@@ -20,7 +20,23 @@ run "cp config/database.yml config/database.yml.example"
 append_file '.gitignore', 'config/database.yml'
 
 gem "haml", ">= 3.0.0.rc.4"
-gem "rspec-rails", ">= 2.0.0.beta.8", :group => :test
+
+
+gem 'nifty-generators', :group => :development
+gem 'faker', :group => [:development, :test]
+gem 'machinist', :group => :test
+gem 'faker', :group => :test
+gem "rspec-rails", ">= 2.0.0.beta.8", :group => [:test, :cucumber]
+gem 'cucumber', :group => :cucumber
+gem 'cucumber-rails', :group => :cucumber 
+gem 'launchy', :group => :cucumber
+gem 'machinist', :group => :cucumber
+gem 'pickle', :git => 'git://github.com/codegram/pickle.git', :group => :cucumber
+gem 'faker', :group => :cucumber
+gem 'capybara', :group => :cucumber
+gem 'database_cleaner', :group => :cucumber
+ 
+generate :nifty_layout if yes?("Generate nifty_layout?")
 
 generators = <<-GENERATORS
 
@@ -60,7 +76,10 @@ create_file "app/views/layouts/application.html.haml", layout
 
 run "gem install bundler"
 run "bundle install"
+
 generate "rspec:install" 
+generate "cucumber:skeleton" " --rspec --capybara"
+#generate 'pickle' # not working
 
 git :init
 git :add => "."
