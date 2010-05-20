@@ -11,17 +11,23 @@ if yes?("create rvm gemset?")
   create_file ".rvmrc", rvmrc
 end
 
+remove_file "public/index.html"
+remove_file "public/favicon.ico"
+remove_file "public/images/rails.png"
 
 empty_directory "lib/generators"
 git :clone => "--depth 0 http://github.com/Florent2/rails3-template.git lib/generators"
 remove_dir "lib/generators/.git"
 
 run "cp config/database.yml config/database.yml.example"
-append_file '.gitignore', ["config/database.yml", "spec/views", "spec/controllers", "spec/requests"].join("\n")
+append_file '.gitignore',
+%q{config/database.yml
+spec/views
+spec/controllers
+spec/requests"
+}
 
 gem "haml", ">= 3.0.0.rc.4"
-
-
 gem 'nifty-generators', :group => :development
 gem 'faker', :group => [:development, :test]
 gem 'machinist', :group => :test
@@ -81,8 +87,27 @@ generate "rspec:install"
 generate "cucumber:skeleton" " --rspec --capybara"
 #generate 'pickle' # not working
 
+remove_file "db/seeds.rb"
+create_file "db/seeds.rb", "require Rails.root.join('spec').join('blueprints')"
+create_file 'spec/blueprints.rb',
+%q{require 'machinist/active_record'
+require 'sham'  
+}
+
+inject_into_file "spec/spec_helper.rb", "require Rails.root.join('spec').join('blueprints')\n", :after => "require 'rspec/rails'\n"
+inject_into_file "spec/spec_helper.rb", :after => "Rspec.configure do |config|\n" do
+%q{  config.before(:all)  { Sham.reset(:before_all) }
+  config.before(:each) { Sham.reset(:before_each) }  
+  
+}
+end
+inject_into_file "features/support/env.rb", :after => "if defined?(ActiveRecord::Base)\n" do
+%q{  require Rails.root.join('spec').join('blueprints')
+  Before { Sham.reset } # reset Shams in between scenarios
+    
+}  
+end
+
 git :init
 git :add => "."
 git :commit => "-a -m 'initial commit'"
-
-
