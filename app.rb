@@ -11,9 +11,13 @@ if yes?("create rvm gemset?")
   create_file ".rvmrc", rvmrc
 end
 
+
 empty_directory "lib/generators"
 git :clone => "--depth 0 http://github.com/Florent2/rails3-template.git lib/generators"
 remove_dir "lib/generators/.git"
+
+run "cp config/database.yml config/database.yml.example"
+append_file '.gitignore', 'config/database.yml'
 
 gem "haml", ">= 3.0.0.rc.4"
 gem "rspec-rails", ">= 2.0.0.beta.8", :group => :test
