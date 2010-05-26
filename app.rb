@@ -29,7 +29,7 @@ spec/requests"
 
 gem "haml", ">= 3.0.0.rc.4"
 gem 'nifty-generators', :group => :development
-gem 'faker', :group => [:development, :test; :cucumber]
+gem 'faker', :group => [:development, :test, :cucumber]
 gem 'machinist', :group => :test
 gem "rspec-rails", ">= 2.0.0.beta.8", :group => [:test, :cucumber]
 gem 'cucumber', :group => :cucumber
