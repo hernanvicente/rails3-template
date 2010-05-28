@@ -28,6 +28,7 @@ spec/requests"
 }
 
 gem "haml", ">= 3.0.0.rc.4"
+gem "annotate"
 gem 'nifty-generators', :group => :development
 gem 'faker', :group => [:development, :test, :cucumber]
 gem 'machinist', :group => :test
