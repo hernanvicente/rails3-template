@@ -24,7 +24,8 @@ append_file '.gitignore',
 %q{config/database.yml
 spec/views
 spec/controllers
-spec/requests"
+spec/requests
+db/schema.rb
 }
 
 gem "haml", ">= 3.0.0.rc.4"
