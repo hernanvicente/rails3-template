@@ -33,7 +33,7 @@ gem "annotate"
 gem 'nifty-generators', :group => :development
 gem 'faker', :group => [:development, :test, :cucumber]
 gem 'machinist', :group => :test
-gem "rspec-rails", ">= 2.0.0.beta.8", :group => [:test, :cucumber]
+gem "rspec-rails", ">= 2.0.0.beta.19", :group => [:test, :cucumber]
 gem 'cucumber', :group => :cucumber
 gem 'cucumber-rails', :group => :cucumber 
 gem 'launchy', :group => :cucumber
@@ -74,7 +74,11 @@ layout = <<-LAYOUT
     = javascript_include_tag :jquery
     = csrf_meta_tag
   %body
-    = yield
+    .header
+      %h1 #{app_name.humanize}
+    .container
+      = yield
+    #footer
 LAYOUT
 
 remove_file "app/views/layouts/application.html.erb"
